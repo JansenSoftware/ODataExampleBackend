@@ -1,0 +1,76 @@
+@baseUrl = http://localhost:5094/odata
+
+### Get all products
+GET {{baseUrl}}/Products
+Accept: application/json
+
+### Get a single product by ID
+GET {{baseUrl}}/Products(1)
+Accept: application/json
+
+### Filter products by price (greater than 100)
+GET {{baseUrl}}/Products?$filter=Price gt 100
+Accept: application/json
+
+### Select specific fields (Name and Price)
+GET {{baseUrl}}/Products?$select=Name,Price
+Accept: application/json
+
+### Order products by price descending
+GET {{baseUrl}}/Products?$orderby=Price desc
+Accept: application/json
+
+### Expand related entities (assuming Products has a related Category entity)
+GET {{baseUrl}}/Products?$expand=Category
+Accept: application/json
+
+### Filter and sort combined: Get products over $50, sorted by name
+GET {{baseUrl}}/Products?$filter=Price gt 50&$orderby=Name
+Accept: application/json
+
+### Count total products
+GET {{baseUrl}}/Products/$count
+Accept: text/plain
+
+### Create a new product (POST)
+POST {{baseUrl}}/Products
+Content-Type: application/json
+
+{
+    "Name": "Tablet",
+    "Price": 300,
+    "CategoryId": 1
+}
+
+### Update an existing product (PUT)
+PUT {{baseUrl}}/Products(1)
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "Name": "Updated Laptop",
+    "Price": 1200,
+    "CategoryId": 2
+}
+
+### Partially update a product (PATCH)
+PATCH {{baseUrl}}/Products(1)
+Content-Type: application/json
+
+{
+    "Price": 1100
+}
+
+### Delete a product (DELETE)
+DELETE {{baseUrl}}/Products(1)
+
+### Get all products with expanded Category and nested Supplier
+GET {{baseUrl}}/Products?$expand=Category($expand=Supplier)
+Accept: application/json
+
+### Get a single product by ID with expanded Category and nested Supplier
+GET {{baseUrl}}/Products(1)?$expand=Category($expand=Supplier)
+Accept: application/json
+
+### Filter products by price and expand Category with nested Supplier
+GET {{baseUrl}}/

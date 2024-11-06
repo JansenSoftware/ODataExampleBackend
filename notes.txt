@@ -1,0 +1,2 @@
+-setup post
+-make generic

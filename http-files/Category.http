@@ -1,0 +1,42 @@
+@baseUrl = http://localhost:5094/odata
+
+### Get all categories
+GET {{baseUrl}}/Categories
+Accept: application/json
+
+### Get a single category by ID
+GET {{baseUrl}}/Categories(1)
+Accept: application/json
+
+### Create a new category (POST)
+POST {{baseUrl}}/Categories
+Content-Type: application/json
+
+{
+    "Name": "New Category"
+}
+
+### Update a category (PUT)
+PUT {{baseUrl}}/Categories(1)
+Content-Type: application/json
+
+{
+    "Id": 1,
+    "Name": "Updated Category Name"
+}
+
+### Delete a category
+DELETE {{baseUrl}}/Categories(1)
+Accept: application/json
+
+### Expand related entities (include Products for each Category)
+GET {{baseUrl}}/Categories?$expand=Products
+Accept: application/json
+
+### Filter categories by name
+GET {{baseUrl}}/Categories?$filter=Name eq 'Electronics'
+Accept: application/json
+
+### Count total categories
+GET {{baseUrl}}/Categories/$count
+Accept: text/plain
